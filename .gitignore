@@ -1,0 +1,214 @@
+# Criado por https://www.toptal.com/developers/gitignore/api/git,visualstudiocode,django
+# Edite em https://www.toptal.com/developers/gitignore?templates=git,visualstudiocode,django
+
+### Django ###
+*.registro
+*.Panela
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+meios de comunicação
+
+# Se o seu processo de compilação inclui a execução de collectstatic, você provavelmente não precisa ou deseja incluir staticfiles/
+# em seu repositório Git. Atualize e descomente a linha a seguir de acordo.
+# <django-project-name>/staticfiles/
+
+### Pilha Django.Python ###
+# Arquivos compilados por byte / otimizados / DLL
+*.py[cod]
+*$py.class
+
+# Extensões C
+*.assim
+
+# Distribuição/embalagem
+.Pitão
+construir/
+desenvolver-ovos/
+dist./
+Transferências/
+ovos/
+.ovos/
+lib/
+lib64/
+peças/
+sdist/
+var/
+rodas/
+share/python-wheels/
+*.egg-info/
+.instalado.cfg
+*.ovo
+MANIFESTO
+
+# PyInstaller
+# Normalmente esses arquivos são escritos por um script python de um template
+# antes que o PyInstaller construa o exe, para injetar data/outras informações nele.
+*.manifesto
+*.spec
+
+# Logs do instalador
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Teste de unidade / relatórios de cobertura
+htmlcov/
+.tox/
+.nox/
+.cobertura
+.cobertura.*
+.cache
+nariztests.xml
+cobertura.xml
+*.cobrir
+*.py,capa
+.hipótese/
+.pytest_cache/
+cobrir/
+
+# Traduções
+*.mo
+
+# Coisas do Django:
+
+# Material do frasco:
+instância/
+.webassets-cache
+
+# Coisas de scrap:
+.scrapy
+
+# Documentação da esfinge
+docs/_build/
+
+#PyBuilder
+.pybuilder/
+alvo/
+
+# Notebook Jupyter
+.ipynb_checkpoints
+
+#IPython
+profile_default/
+ipython_config.py
+
+#pyenv
+# Para uma biblioteca ou pacote, você pode querer ignorar esses arquivos, pois o código é
+# destinado a ser executado em vários ambientes; caso contrário, verifique-os em:
+# .python-version
+
+# pipenv
+# De acordo com pypa/pipenv#598, é recomendado incluir Pipfile.lock no controle de versão.
+# No entanto, em caso de colaboração, se houver dependências ou dependências específicas da plataforma
+# sem suporte multiplataforma, o pipenv pode instalar dependências que não funcionam ou não
+# instala todas as dependências necessárias.
+#Pipfile.lock
+
+#poesia
+# Semelhante ao Pipfile.lock, geralmente é recomendado incluir poesia.lock no controle de versão.
+# Isto é especialmente recomendado para pacotes binários para garantir a reprodutibilidade, e é mais
+# comumente ignorado para bibliotecas.
+# https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poesia.lock
+
+# pdm
+# Semelhante ao Pipfile.lock, geralmente é recomendado incluir pdm.lock no controle de versão.
+#pdm.lock
+# pdm armazena as configurações de todo o projeto em .pdm.toml, mas é recomendável não incluí-lo
+# no controle de versão.
+# https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; usado por exemplo github.com/David-OConnor/pyflow e github.com/pdm-project/pdm
+__pypackages__/
+
+#Coisas de aipo
+aipo-schedule
+aipo.pid
+
+# Arquivos analisados ​​pelo SageMath
+*.sage.py
+
+# Ambientes
+.env
+.venv
+ambiente/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Configurações do projeto Spyder
+.spyderproject
+.spyproject
+
+# Configurações do projeto de corda
+.ropeproject
+
+# documentação do mkdocs
+/local
+
+#mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Verificador de tipo Pyre
+.pyre/
+
+# pytype analisador de tipo estático
+.pytype/
+
+# Símbolos de depuração do Cython
+cython_debug/
+
+#PyCharm
+# O modelo específico do JetBrains é mantido em um JetBrains.gitignore separado que pode
+# pode ser encontrado em https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+# e pode ser adicionado ao gitignore global ou mesclado neste arquivo. Por uma energia mais nuclear
+# opção (não recomendado) você pode descomentar o seguinte para ignorar toda a pasta de ideias.
+#.idéia/
+
+### Git ###
+# Criado pelo git para backups. Para desabilitar backups no Git:
+# $ git config --global mergetool.keepBackup false
+*.origem
+
+# Criado pelo git ao usar ferramentas de mesclagem para conflitos
+*.CÓPIA DE SEGURANÇA.*
+*.BASE.*
+*.LOCAL.*
+*.CONTROLO REMOTO.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Histórico local para código do Visual Studio
+.história/
+
+# Extensões de código do Visual Studio construídas
+*.vsix
+
+### Patch VisualStudioCode ###
+# Ignora todo o histórico local de arquivos
+.história
+.ionida
+
+# Suporte para escopo do snippet de projeto
+.vscode/*.code-snippets
+
+# Ignora code-workspaces
+*.code-workspace
+
+# Fim de https://www.toptal.com/developers/gitignore/api/git,visualstudiocode,django

@@ -1,0 +1,8 @@
+pip==19.2.3
+setuptools==41.2.0
+asgiref==3.5.2
+Django==3.2.14
+djangorestframework==3.13.1
+pytz==2022.1
+sqlparse==0.4.2
+typing-extensions==4.3.0
