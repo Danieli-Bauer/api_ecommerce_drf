@@ -2,7 +2,7 @@ from django.db import models
 from localflavor.br.models import BRCPFField
 from django.core.validators import RegexValidator
 
-REGEX_TELEFONE = RegexValidator(r'^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$', 'Enter a phone number in the correct format. Mobile phones: (XX) XXXXX-XXXX Landlines: (XX) XXXX-XXXX')
+REGEX_TELEFONE = RegexValidator(r'^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$', 'Insira um número de telefone válido. Telefones móveis: (XX) 9XXXX-XXXX Telefones fixos: (XX) XXXX-XXXX')
 
 class Cliente(models.Model):
     nome = models.CharField(
