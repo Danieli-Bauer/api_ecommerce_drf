@@ -1,4 +1,4 @@
-from .models import Pedido, Item
+from .models import Item
 
 class PedidoHelper:
 
@@ -6,10 +6,10 @@ class PedidoHelper:
         self.pedido = pedido
         self.valor_total = 0
         self.itens = []
-        self.detalhes_pedido = {'informacoes': [], 'itens': [], 'total': 0}
+        self.detalhes_pedido = {'pedido': {}, 'itens': [], 'total': 0}
 
     def verifica_pedido(self):
-        self.itens = Pedido.objects.filter(pedido=self.pedido)
+        self.itens = Item.objects.filter(pedido=self.pedido)
         
         if not self.itens:
             return False
@@ -33,13 +33,12 @@ class PedidoHelper:
                     'preco_unidade': item.produto.preco,
                 }
             )
-        self.detalhes_pedido['informacoes'].append(
-            {
-                'pedido': self.pedido.id,
-                'cliente': self.pedido.cliente.nome,
+        self.detalhes_pedido['pedido'] = {
+                'id': self.pedido.id,
                 'descricao': self.pedido.descricao,
-                'criado_em': self.pedido.criado_em
+                'criado_em': self.pedido.criado_em,
+                'atualizado_em': self.pedido.atualizado_em,
+                'cliente': self.pedido.cliente.cpf,
             }
-        )
         self.detalhes_pedido['total'] = self.valor_total
         
