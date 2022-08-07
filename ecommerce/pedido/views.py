@@ -15,18 +15,31 @@ class PedidoViewSet(viewsets.ModelViewSet):
     A função a seguir sobrescreve a função retrieve (verbo HTTP get) para que retorne todas as informações do pedido configuradas em helpers.py
     """
     def retrieve(self, request, pk='id'):
+        """
+        A seguir tentamos encontrar a instância de Pedido em questão pelo seu id.
+        """
         try:
             pedido = self.get_object()
-        except Exception as e:
-            return Response(status=status.HTTP_404_NOT_FOUND, data={"Erro": "Pedido não encontrado."})
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND, data={"detail": "Não encontrado."})
 
+        """
+        Caso a instância seja encontrada, invoca-se o helper de Pedido, para retornar os detalhes do pedido.
+        """
         pedido_helper = PedidoHelper(pedido)
         pedido_detalhes = pedido_helper.verifica_pedido()
-
+        
+        """
+        Se ao pedido não tiver sido adicionado nenhum item, retorna-se uma resposta HTTP 200 junto com os dados básicos do pedido e uma mensagem de que o pedido está vazio.
+        """
         if not pedido_detalhes:
-            return Response(status=status.HTTP_404_NOT_FOUND, data={'Pedido': 'Pedido vazio. Adicione itens.'})
+            pedido_serializer = self.get_serializer(pedido)
+            return Response(data={"pedido": pedido_serializer.data, "mensagem": "Pedido vazio. Adicione itens."}, status=status.HTTP_200_OK)
 
-        return Response(status=status.HTTP_200_OK, data={"Detalhes_do_pedido": pedido_detalhes})
+        """
+        Caso tenham sido adicionados itens ao pedido, retorna-se o conjunto de informações organizadas pelo helper.
+        """
+        return Response(status=status.HTTP_200_OK, data={"pedido": pedido_detalhes})
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -36,11 +49,10 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     A função a seguir sobrescreve a função create (verbo HTTP post) para que, em caso de fornecimento de dados válidos de criação de item, a quantidade de produtos do item altere a quantidade de produtos em estoque. 
     
-    Os produtos em estoque são as entidades do modelo Produto (da aplicação ecommerce.produto). Se a quantidade de um determinado produto é maior que 0, então há quantidade positiva desse produto em estoque, e o item que adiciona esse produto poderá ser criado, deduzindo da quantidade daquele produto em estoque a exata quantidade do produto fornecida no item. 
+    Os produtos em estoque são as instâncias do modelo Produto (da aplicação ecommerce.produto). Se a quantidade de um determinado produto é maior que 0, então há quantidade positiva desse produto em estoque, e o item que adiciona esse produto poderá ser criado, deduzindo da quantidade daquele produto em estoque a exata quantidade do produto fornecida no item. 
     
     Se não houver quantidade suficiente do produto em estoque, o item não poderá ser criado e a operação post retornará um erro HTTP 400.
     """
-
 
     def create(self, request):
         item = self.serializer_class(data=request.data)
