@@ -27,7 +27,7 @@ class PedidoViewSet(viewsets.ModelViewSet):
         Caso a instância seja encontrada, invoca-se o helper de Pedido, para retornar os detalhes do pedido.
         """
         pedido_helper = PedidoHelper(pedido)
-        pedido_detalhes = pedido_helper.verifica_pedido()
+        pedido_detalhes = pedido_helper.retorna_detalhes_pedido()
         
         """
         Se ao pedido não tiver sido adicionado nenhum item, retorna-se uma resposta HTTP 200 junto com os dados básicos do pedido e uma mensagem de que o pedido está vazio.
