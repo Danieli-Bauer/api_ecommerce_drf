@@ -33,6 +33,15 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+    """
+    A função a seguir sobrescreve a função create (verbo HTTP post) para que, em caso de fornecimento de dados válidos de criação de item, a quantidade de produtos do item altere a quantidade de produtos em estoque. 
+    
+    Os produtos em estoque são as entidades do modelo Produto (da aplicação ecommerce.produto). Se a quantidade de um determinado produto é maior que 0, então há quantidade positiva desse produto em estoque, e o item que adiciona esse produto poderá ser criado, deduzindo da quantidade daquele produto em estoque a exata quantidade do produto fornecida no item. 
+    
+    Se não houver quantidade suficiente do produto em estoque, o item não poderá ser criado e a operação post retornará um erro HTTP 400.
+    """
+
+
     def create(self, request):
         item = self.serializer_class(data=request.data)
         if item.is_valid():
