@@ -8,7 +8,7 @@ class Pedido(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     descricao = models.TextField(blank=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=False)
-    criado_em = models.DateTimeField(auto_now_add=True)
+    criado_em = models.DateTimeField(auto_now_add=True, editable=False)
     atualizado_em = models.DateTimeField(auto_now=True)
     
     def __str__(self):
@@ -21,9 +21,9 @@ class Item(models.Model):
     quantidade = models.IntegerField(
         blank=False,
         validators=[MinValueValidator(0)])
-    criado_em = models.DateTimeField(auto_now_add=True)
+    criado_em = models.DateTimeField(auto_now_add=True, editable=False)
     atualizado_em = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.id} - Pedido: {self.pedido} - Produto: {self.produto} - Quantidade: {self.quantidade}"
+        return f"Item: {self.id} - Pedido: {self.pedido} - Produto: {self.produto} - Quantidade: {self.quantidade}"
 
