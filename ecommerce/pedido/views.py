@@ -32,3 +32,37 @@ class PedidoViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+    def create(self, request):
+        item = self.serializer_class(data=request.data)
+        if item.is_valid():
+            """
+            Guarda-se na variável quantidade_item a quantidade de items do pedido.
+            """
+            quantidade_item = request.data['quantidade']
+            """
+            Guarda-se na variável produto o produto relacionado ao item do pedido.
+            """
+            produto = Produto.objects.get(id=request.data['produto'])
+            """
+            Guarda-se na variável quantidade_produto a quantidade de produtos em estoque.
+            """
+            quantidade_produto = produto.quantidade
+            """
+            Se a quantidade de produtos fornecida na criação do item for maior do que a quantidade de produtos em estoque, então retorna-se um erro HTTP 400.
+            """
+            if int(quantidade_item) > int(quantidade_produto):
+                return Response({"status": "Erro", "mensagem": "Este produto não está disponível em estoque ou você deve tentar uma quantidade menor."}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                """
+                Se a quantidade de produtos fornecida na criação do item for menor ou igual à quantidade de produtos em estoque, então se deduz da quantidade em estoque a quantidade de produtos do item.
+                """
+                produto.quantidade = produto.quantidade - int(request.data['quantidade'])
+                produto.save()
+                item.save()
+                return Response({"data": item.data}, status=status.HTTP_201_CREATED)    
+        """
+        Se os dados fornecidos não forem válidos, retorna-se um erro HTTP 400.
+        """
+        return Response({"status": "Erro", "mensagem": "Dados inválidos. Verifique se o campo de quantidade está vazio."}, status=status.HTTP_400_BAD_REQUEST) 
+
