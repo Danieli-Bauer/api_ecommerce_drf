@@ -34,7 +34,7 @@ Criar uma API de e-commerce com Django Rest Framework.
 - POST `pedidos/`, fornece campos para criação de um novo pedido
 - GET `itens/`, retorna lista de itens cadastrados
 - GET-PUT-DELETE `itens/<id>`, retorna dados de um item específico
-- POST `pedidos/`, fornece campos para criação de um novo item
+- POST `itens/`, fornece campos para criação de um novo item
 
 ## Metodologias ágeis
 - [Kanban](https://trello.com/b/EN2fH1QY/time-carmen-portinho)
