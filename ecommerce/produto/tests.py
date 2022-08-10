@@ -42,6 +42,29 @@ class TestEndpointsProduto(APITestCase):
           })
 
 
+    def test_get_lista_de_produtos(self):
+        produto = Produto.objects.create(id=uuid.uuid4(), quantidade=10, preco=1.0)
+        response = self.client.get('/produtos/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.json()),1)
+
+    def test_get_produto_endpoint(self):
+        produto = Produto.objects.create(quantidade=10, preco=1.0)
+        response = self.client.get('/produtos/', args=produto.id, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json(),[{
+          "id": ANY,
+          "nome": ANY,
+          "descricao": ANY,
+          "preco": "1.00",
+          "quantidade": 10,
+          "criado_em": ANY,
+          "atualizado_em": ANY
+          }])
+
+
+
+
       
 
 
