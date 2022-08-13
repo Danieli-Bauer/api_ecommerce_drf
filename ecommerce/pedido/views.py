@@ -5,11 +5,13 @@ from .serializers import PedidoSerializer, ItemSerializer
 from .models import Pedido, Item
 from .helpers import PedidoHelper
 from ecommerce.produto.models import Produto
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['cliente', ]
     
     """
     A função a seguir sobrescreve a função retrieve (verbo HTTP get) para que retorne todas as informações do pedido configuradas em helpers.py
