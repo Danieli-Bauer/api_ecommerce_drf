@@ -10,14 +10,14 @@ import json
 # Create your tests here.
 
 class TestEndpointsCliente(APITestCase):
-    '''Criação de função para uso nos testes'''
+    """Criação de função para uso nos testes"""
     def adiciona_cliente_test(self):
         c = Cliente(nome="Martin Leandro Peixoto", cpf="93882779969", endereco="Rua Mário Pasqual Casella, 508, São Dimas, Guaratinguetá/SP", telefone="1237744781", email="martin.peixoto@caesar.com")
         c.save()
 
 
-'''Criação de test com POST
-Teste de Cadastro de Cliente válido e iválido'''
+"""Criação de test com POST
+Teste de Cadastro de Cliente válido e iválido."""
 
     def test_cadastro_cliente_invalido(self):
         request_cliente = {
@@ -40,8 +40,8 @@ Teste de Cadastro de Cliente válido e iválido'''
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Cliente.objects.count(), 1)
         
-'''Criação de test com GET,
-Teste de lista de clientes, endpoints e endpoints de cliente inválidos'''      
+"""Criação de test com GET,
+Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
         
     def test_lista_de_clientes(self):
             self.adiciona_cliente_test()
@@ -61,7 +61,7 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos'''
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
 
-'''Criação de test DELETE, teste para deletar cliente'''   
+"""Criação de test DELETE, teste para deletar cliente"""   
   
     def test_delete_cliente(self):
             self.adiciona_cliente_test()
