@@ -85,5 +85,5 @@ class ItemViewSet(viewsets.ModelViewSet):
         """
         Se os dados fornecidos não forem válidos, retorna-se um erro HTTP 400.
         """
-        return Response({"status": "Erro", "mensagem": "Dados inválidos. Verifique se o campo de quantidade está vazio."}, status=status.HTTP_400_BAD_REQUEST) 
+        return Response({"status": "Erro", "mensagem": "Dados inválidos."}, status=status.HTTP_400_BAD_REQUEST) 
 
