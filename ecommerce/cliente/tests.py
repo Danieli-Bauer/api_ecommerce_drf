@@ -68,3 +68,25 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos'''
         response = self.client.delete('/clientes/93882779969/', format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         
+"""
+Teste para atualizar variavel, primeiro a função busca a outra função adiciona_cliente_test que tem armazenado um cliente, e através do PUT é possível fazer alteração dessas variáveis.
+"""        
+        
+def test_update_cliente(self):
+    
+        self.adiciona_cliente_test()
+        request_cliente = {            
+            "nome" : "Martin Luther King",
+            "cpf" : "93882779969",
+            "endereco" : "Rua Mário Pasqual Casella, 508, São Dimas, Guaratinguetá/SP",
+            "telefone" : "1237744781",
+            "email" : "martin.peixoto@caesar.com"
+        }
+        response = self.client.put('/clientes/93882779969/', request_cliente, format='json')
+        json = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        c = Cliente.objects.get()
+        self.assertEqual(c.nome, "Martin Luther King")
+        
+        
