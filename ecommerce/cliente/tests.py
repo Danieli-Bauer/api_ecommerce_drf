@@ -14,3 +14,29 @@ class TestEndpointsCliente(APITestCase):
     def adiciona_cliente_test(self):
         c = Cliente(nome="Martin Leandro Peixoto", cpf="93882779969", endereco="Rua Mário Pasqual Casella, 508, São Dimas, Guaratinguetá/SP", telefone="1237744781", email="martin.peixoto@caesar.com")
         c.save()
+
+
+'''Criação de test com POST
+Teste de Cadastro de Cliente válido e iválido'''
+
+    def test_cadastro_cliente_invalido(self):
+        request_cliente = {
+            "nome": "Bruna",
+            "cpf": "11122233344"
+        }
+        response = self.client.post('/clientes/', request_cliente, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+        
+    def test_cadastro_cliente_valido(self):
+        request_cliente = {
+            "nome": "Isabel Sophia Mendes",
+            "cpf": "89524609797",
+            "endereco": "Rua Campina Grande, 482, Ponta D'Areia, Niterói/RJ",
+            "telefone": "21989633223",
+            "email": "isabel98@clic.com.br",
+        }
+        response = self.client.post('/clientes/', request_cliente, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Cliente.objects.count(), 1)
+        
