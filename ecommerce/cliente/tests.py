@@ -72,7 +72,7 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
 Teste para atualizar variavel, primeiro a função busca a outra função adiciona_cliente_test que tem armazenado um cliente, e através do PUT é possível fazer alteração dessas variáveis.
 """        
         
-def test_update_cliente(self):
+    def test_update_cliente(self):
     
         self.adiciona_cliente_test()
         request_cliente = {            
