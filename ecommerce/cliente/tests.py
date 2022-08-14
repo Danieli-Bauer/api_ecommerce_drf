@@ -59,4 +59,12 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos'''
     def test_endpoint_cliente_invalido(self):
         response = self.client.get('/clientes/93882779969/', format='json')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    
+
+'''Criação de test DELETE, teste para deletar cliente'''   
+  
+    def test_delete_cliente(self):
+            self.adiciona_cliente_test()
+        response = self.client.delete('/clientes/93882779969/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         
