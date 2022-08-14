@@ -44,7 +44,7 @@ Teste de Cadastro de Cliente válido e iválido."""
 Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
         
     def test_lista_de_clientes(self):
-            self.adiciona_cliente_test()
+        self.adiciona_cliente_test()
         response = self.client.get('/clientes/', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.json()), 1)
@@ -64,7 +64,7 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
 """Criação de test DELETE, teste para deletar cliente"""   
   
     def test_delete_cliente(self):
-            self.adiciona_cliente_test()
+        self.adiciona_cliente_test()
         response = self.client.delete('/clientes/93882779969/', format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         
@@ -73,7 +73,6 @@ Teste para atualizar variavel, primeiro a função busca a outra função adicio
 """        
         
     def test_update_cliente(self):
-    
         self.adiciona_cliente_test()
         request_cliente = {            
             "nome" : "Martin Luther King",
