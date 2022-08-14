@@ -40,3 +40,23 @@ Teste de Cadastro de Cliente válido e iválido'''
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Cliente.objects.count(), 1)
         
+'''Criação de test com GET,
+Teste de lista de clientes, endpoints e endpoints de cliente inválidos'''      
+        
+    def test_lista_de_clientes(self):
+            self.adiciona_cliente_test()
+        response = self.client.get('/clientes/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.json()), 1)
+    
+    
+    def test_endpoint_cliente(self):
+        self.adiciona_cliente_test()
+        response = self.client.get('/clientes/93882779969/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        
+    def test_endpoint_cliente_invalido(self):
+        response = self.client.get('/clientes/93882779969/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        
