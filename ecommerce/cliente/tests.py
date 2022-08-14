@@ -16,8 +16,8 @@ class TestEndpointsCliente(APITestCase):
         c.save()
 
 
-"""Criação de test com POST
-Teste de Cadastro de Cliente válido e iválido."""
+    """Criação de test com POST
+    Teste de Cadastro de Cliente válido e iválido."""
 
     def test_cadastro_cliente_invalido(self):
         request_cliente = {
@@ -40,9 +40,10 @@ Teste de Cadastro de Cliente válido e iválido."""
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Cliente.objects.count(), 1)
         
-"""Criação de test com GET,
-Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
         
+    """Criação de test com GET,
+    Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
+            
     def test_lista_de_clientes(self):
         self.adiciona_cliente_test()
         response = self.client.get('/clientes/', format='json')
@@ -61,17 +62,17 @@ Teste de lista de clientes, endpoints e endpoints de cliente inválidos"""
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
 
-"""Criação de test DELETE, teste para deletar cliente"""   
-  
+    """Criação de test DELETE, teste para deletar cliente"""     
     def test_delete_cliente(self):
         self.adiciona_cliente_test()
         response = self.client.delete('/clientes/93882779969/', format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         
-"""
-Teste para atualizar variavel, primeiro a função busca a outra função adiciona_cliente_test que tem armazenado um cliente, e através do PUT é possível fazer alteração dessas variáveis.
-"""        
         
+    """ 
+    Teste para atualizar variavel, primeiro a função busca a outra função adiciona_cliente_test que tem armazenado um cliente, e através do PUT é possível fazer alteração dessas variáveis.
+    """
+                
     def test_update_cliente(self):
         self.adiciona_cliente_test()
         request_cliente = {            
