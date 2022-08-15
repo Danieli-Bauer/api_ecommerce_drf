@@ -6,6 +6,7 @@ from .models import Pedido, Item
 from .helpers import PedidoHelper
 from ecommerce.produto.models import Produto
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db import transaction
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
@@ -81,8 +82,9 @@ class ItemViewSet(viewsets.ModelViewSet):
                 Se a quantidade de produtos fornecida na criação do item for menor ou igual à quantidade de produtos em estoque, então se deduz da quantidade em estoque a quantidade de produtos do item.
                 """
                 produto.quantidade = produto.quantidade - int(request.data['quantidade'])
-                produto.save()
-                item.save()
+                with transaction.atomic():
+                    produto.save()
+                    item.save()
                 return Response({"data": item.data}, status=status.HTTP_201_CREATED)    
         """
         Se os dados fornecidos não forem válidos, retorna-se um erro HTTP 400.
