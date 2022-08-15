@@ -153,12 +153,12 @@ class TestEndpointsItem(APITestCase):
 
     """
     OPERAÇÕES POST
-    Aqui validamos duas requests inválidas e em seguida uma request válida.
-    A primeira request inválida contém dados inválidos e a segunda tenta criar um item quando não há produtos em estoque (o que também provocará um erro, pois um item que remete a um produto só pode ser criado se há quantidade suficiente do produto em estoque).
+    Aqui validamos três requests inválidas e em seguida uma request válida.
+    A primeira request inválida contém dados inválidos (exceto pela quantidade), a segunda request contém a quantidade com valor negativo, e a terceira tenta criar um item quando não há produtos em estoque (o que também provocará um erro, pois um item que remete a um produto só pode ser criado se há quantidade suficiente do produto em estoque).
     """
     def test_post_request_item_invalido(self):
         request_item = {
-            "quantidade": -1,
+            "quantidade": 1,
             "pedido": "",
             "produto": None
             }
@@ -166,6 +166,21 @@ class TestEndpointsItem(APITestCase):
         Usamos None na request e depois json.dumps, para o None seja substuído por null na criação da request.
         """
         response = self.client.post('/itens/', json.dumps(request_item), format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json(), {
+            "status": "Erro", 
+            "mensagem": "Dados inválidos."
+            })
+
+    def test_post_request_item_invalido_quantidade_negativa(self):
+        pedido = self.cria_pedido()
+        produto = self.cria_produto_quant_10()
+        request_item = {
+            "quantidade": -1,
+            "pedido": str(pedido.id),
+            "produto": str(produto.id)
+            }
+        response = self.client.post('/itens/', request_item, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.json(), {
             "status": "Erro", 

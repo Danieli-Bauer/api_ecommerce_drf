@@ -20,7 +20,7 @@ class Item(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, blank=False)
     quantidade = models.IntegerField(
         blank=False,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(1)])
     criado_em = models.DateTimeField(auto_now_add=True, editable=False)
     atualizado_em = models.DateTimeField(auto_now=True)
     
