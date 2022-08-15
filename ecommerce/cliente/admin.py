@@ -20,3 +20,5 @@ class ClienteAdmin(admin.ModelAdmin):
             return obj.criado_em.strftime('%d/%m/%Y')
     
     get_atualizado_em.short_description = 'Atualizado em'
+    
+    
