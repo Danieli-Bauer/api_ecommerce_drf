@@ -3,12 +3,12 @@ import uuid
 from django.core.validators import MinValueValidator
 
 """
-Nome fiel usada padrão, porém editada para cada nome cadastrado ser único
-Descrição foi utilizado text fiel para uma melhor autonomia das especificações do produto, aceita que campo não seja preenchido
-Preço fiel foi escolhido para melhor utilização das casas decimais, e para que junto com outros produtos, como a soma, por exemplo, o sistema não se confunda e tenha dificuldade de executar. Feito validação para que não seja aceito valores negativos. 
-Quantidade field utilizada para que recebeçe valores inteiros e positivos. Feito validação para que não seja aceito valores negativos. 
-Criado em utiliza horario da criação e não é possível editar.
-Atualizado em utiliza exato horario em que arquivo voi primeiramente criado, depois editado. (todas as vezes)
+Nome: field usada padrão, porém editada para cada nome cadastrado ser único
+Descrição: foi utilizado text fiel para uma melhor autonomia das especificações do produto, aceita que campo não seja preenchido
+Preço: field foi escolhido para melhor utilização das casas decimais, e para que junto com outros produtos, como a soma, por exemplo, o sistema não se confunda e tenha dificuldade de executar. Feito validação para que não seja aceito valores negativos. 
+Quantidade: field utilizada para que recebeçe valores inteiros e positivos. Feito validação para que não seja aceito valores negativos. 
+Criado em: utiliza horario da criação e não é possível editar.
+Atualizado em: utiliza exato horario em que arquivo voi primeiramente criado, depois editado. (todas as vezes)
 """
 
 class Produto(models.Model):
