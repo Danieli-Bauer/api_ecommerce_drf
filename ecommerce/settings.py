@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ecommerce.produto',
     'ecommerce.pedido',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

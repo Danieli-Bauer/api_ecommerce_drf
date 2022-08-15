@@ -5,11 +5,13 @@ from .serializers import PedidoSerializer, ItemSerializer
 from .models import Pedido, Item
 from .helpers import PedidoHelper
 from ecommerce.produto.models import Produto
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['cliente', ]
     
     """
     A função a seguir sobrescreve a função retrieve (verbo HTTP get) para que retorne todas as informações do pedido configuradas em helpers.py
@@ -85,5 +87,5 @@ class ItemViewSet(viewsets.ModelViewSet):
         """
         Se os dados fornecidos não forem válidos, retorna-se um erro HTTP 400.
         """
-        return Response({"status": "Erro", "mensagem": "Dados inválidos. Verifique se o campo de quantidade está vazio."}, status=status.HTTP_400_BAD_REQUEST) 
+        return Response({"status": "Erro", "mensagem": "Dados inválidos."}, status=status.HTTP_400_BAD_REQUEST) 
 
