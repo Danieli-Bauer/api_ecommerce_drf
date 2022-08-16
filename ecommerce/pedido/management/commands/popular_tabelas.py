@@ -2,15 +2,12 @@ from django.core.management import BaseCommand
 from ecommerce.cliente.models import Cliente
 from ecommerce.produto.models import Produto
 from ecommerce.pedido.models import Pedido
-import logging
-
-logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = "Cria instâncias dos modelos"
 
     def handle(self, *args, **options):
-        logger.info("Criando três instâncias do modelo Cliente...")
+        
         cliente1 = Cliente.objects.create(
             nome="Tiago Pereira da Silva",
             cpf="77632899707",
@@ -33,7 +30,6 @@ class Command(BaseCommand):
             email="paulo_santos@comp.net"
         )
 
-        logger.info("Criando cinco instâncias do modelo Produto...")
         Produto.objects.create(
             nome="Bola Suíça Gym Ball 55cm",
             descricao="Cor: Cinza. Indicado para Yoga, Pilates, Abdominal. Bomba Grátis. Peso de suporte máximo recomendado: até 200kg.",
@@ -65,7 +61,6 @@ class Command(BaseCommand):
             quantidade=1000
         )
 
-        logger.info("Criando três instâncias do modelo Pedido...")
         Pedido.objects.create(
             cliente=cliente1,
             descricao="Compra de 2 bolas suíças"
