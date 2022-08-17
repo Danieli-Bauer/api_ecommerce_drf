@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 
 class Pedido(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    descricao = models.TextField(blank=False)
+    descricao = models.TextField(blank=False, verbose_name="Descrição")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=False)
     criado_em = models.DateTimeField(auto_now_add=True, editable=False)
     atualizado_em = models.DateTimeField(auto_now=True)
@@ -27,3 +27,5 @@ class Item(models.Model):
     def __str__(self):
         return f"Item: {self.id} - Pedido: {self.pedido} - Produto: {self.produto} - Quantidade: {self.quantidade}"
 
+    class Meta:
+        verbose_name_plural = "Itens"
